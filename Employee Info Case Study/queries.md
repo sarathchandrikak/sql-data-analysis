@@ -35,12 +35,11 @@
 29. Change the "Business Analysis" department name to "Data Analysis".
 30. Remove the department number 10 record from the "departments" table.
 31. How many departments are there in the "employees" database?
-
-
-    
-
-
-
+32. What is the total amount of money spent on salaries for all contracts starting after the 1st of January 1997?
+33. Which is the lowest employee number in the database?
+34. Which is the highest employee number in the database?
+35. What is the average annual salary paid to employees who started after the 1st of January 1997?
+36. Round the average amount of money spent on salaries for all contracts that started after the 1st of January 1997 to a precision of cents.
 
 
 ```sql
@@ -75,7 +74,11 @@
   insert into departments values ("d010", "Business Analysis");
   update departments set dept_name = "Data Analysis" where dept_no = "d010";
   delete from departments where dept_no = "d010";
-
-
+  select count(distinct dept_no) from dept_emp;
+  select sum(salary) from salaries where from_date > "1997-01-01";
+  select emp_no from employees order by emp_no limit 1;
+  select emp_no from employees order by emp_no desc limit 1;
+  select avg(salary) from salaries where from_date > "1997-01-01";
+  select round(avg(salary),2) from salaries where from_date > "1997-01-01";
   
 ```
