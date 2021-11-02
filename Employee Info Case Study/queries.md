@@ -23,6 +23,23 @@
 23. Write a query that obtains two columns. The first column must contain annual salaries higher than 80,000 dollars. 
     The second column, renamed to "emps_with_same_salary", must show the number of employees contracted to that salary. Lastly, sort the output by the first column.
 24. Select all employees whose average salary is higher than $120,000 per annum.
+25. Select the first 100 rows from the 'dept_emp' table.
+26. Task 1:
+    a. Select ten records from the “titles” table to get a better idea about its content.
+    b. Then, in the same table, insert information about employee number 999903. State that he/she is a “Senior Engineer”, who has started working in this position on October 1st, 1997.
+    c. At the end, sort the records from the “titles” table in descending order to check if you have successfully inserted the new record.
+27. Task 2:
+    a. Insert information about the individual with employee number 999903 into the “dept_emp” table. 
+    b. He/She is working for department number 5, and has started work on October 1st, 1997; her/his contract is for an indefinite period of time.
+28. Create a new department called "Business Analysis". Register it under number "d010".
+29. Change the "Business Analysis" department name to "Data Analysis".
+30. Remove the department number 10 record from the "departments" table.
+31. How many departments are there in the "employees" database?
+
+
+    
+
+
 
 
 
@@ -50,4 +67,15 @@
   select count(*) from dept_manager;
   select * from employees order by hire_date DESC;
   select salary, count(salary) as emps_with_same_salary from salaries group by salary having salary > 80000 Order by salary;
+  select * from dempt_emp limit 100;
+  insert into employees values (999903, "1977-09-14", "Johnathan", "Creek", "M", "1999-01-01"); 
+  insert into titles values (999903, "Senior Engineer", "1997-10-01", "9999-01-01");
+  select * from titles order by from_date DESC;
+  insert into dept_emp values (999903, "d005", "1991-10-01", "9999-01-01");  
+  insert into departments values ("d010", "Business Analysis");
+  update departments set dept_name = "Data Analysis" where dept_no = "d010";
+  delete from departments where dept_no = "d010";
+
+
+  
 ```
