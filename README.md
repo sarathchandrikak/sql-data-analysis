@@ -1,1 +1,1 @@
-# sql-data-analysis-and-visualization
+# sql-data-analysis
