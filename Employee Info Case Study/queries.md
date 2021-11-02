@@ -23,7 +23,7 @@
 23. Write a query that obtains two columns. The first column must contain annual salaries higher than 80,000 dollars. 
     The second column, renamed to "emps_with_same_salary", must show the number of employees contracted to that salary. Lastly, sort the output by the first column.
 24. Select all employees whose average salary is higher than $120,000 per annum.
-25.  
+
 
 
 ```sql
@@ -50,5 +50,4 @@
   select count(*) from dept_manager;
   select * from employees order by hire_date DESC;
   select salary, count(salary) as emps_with_same_salary from salaries group by salary having salary > 80000 Order by salary;
-  select * from salaries where avg(salary) > 120000; 
 ```
