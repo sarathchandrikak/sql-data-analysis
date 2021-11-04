@@ -1,6 +1,6 @@
 # 📍 Employee Info Case Study
 
-This case study uses the employees database that has information of departments and salary info of employees, managers stored in 6 different tables which are used to analyse basic questions and implement all the concepts of SQL. Following is the schema diagram of the table. 
+This case study has employees database that has information of departments and salary info of employees, managers stored in 6 different tables which are used to analyse basic questions and implement all the concepts of SQL. Following is the schema diagram of the table. 
 
 <img width="1121" alt="Screenshot 2021-11-04 at 3 59 01 PM" src="https://user-images.githubusercontent.com/65502906/140354898-0cf29868-5c52-4e4c-9222-1f9cb5e71963.png">
 
