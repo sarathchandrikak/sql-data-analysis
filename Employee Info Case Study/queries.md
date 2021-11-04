@@ -52,8 +52,8 @@
 46. Create a view that will extract the average salary of all managers registered in the database. Round this value to the nearest cent.
 47. Create a procedure called "emp_info" that uses as parameters the first and the last name of an individual, and returns their employee number.
 48. Create a function called "emp_info" that takes for parameters the first and last name of an employee, and returns the salary from the newest contract of that employee.
-
-
+49. Obtain a result set containing the employee number, first name, and last name of all employees with a number higher than 109990. Create a fourth column in the query, indicating whether this employee is also a manager, according to the data provided in the dept_manager table, or a regular employee.
+50. Extract a dataset containing the following information about the managers: employee number, first name, and last name. Add two columns at the end – one showing the difference between the maximum and minimum salary of that employee, and another one saying whether this salary raise was higher than $30,000 or NOT.
 
 ```sql
   1. select dept_no from departments;
@@ -176,11 +176,33 @@
    	DETERMINISTIC NO SQL READS SQL DATA
    	begin
    	declare v_emp_salary Decimal(10,2);
-		select s.salary INTO v_emp_salary from salaries as s left join employees e on s.emp_no = e.emp_no 
-    		where (e.first_name = p_first_name and e.last_name = p_last_name) order by from_date DESC limit 1;
+		select s.salary INTO v_emp_salary from salaries as s 
+		left join employees e on s.emp_no = e.emp_no 
+    		where (e.first_name = p_first_name and e.last_name = p_last_name) 
+		order by from_date DESC limit 1;
    	return v_emp_salary;
    	end $$  
    
 	select emp_info('Aruna', 'Journel');
-  
+  49. select
+	e.emp_no, e.first_name, e.last_name,
+	case when dm.emp_no is not null then 'Manager'
+	else 'Employee'
+	end as is_manager
+	from
+	employees e
+	left join
+	dept_manager dm on dm.emp_no = e.emp_no
+	where e.emp_no > 109990;
+  50. select d.emp_no, e.first_name, e.last_name, max(s.salary) - min(s.salary) as salary_difference, 
+	if (max(s.salary) - min(s.salary) > 30000, 
+		'Salary was raised by more than $30,000', 
+		'Salary was not raised by more than $30,000') 
+	as salary_increase
+	from dept_manager d 
+	join 
+	employees e on e.emp_no = d.emp_no 
+	join 
+	salaries s on s.emp_no = d.emp_no 
+	group by s.emp_no;
 ```
