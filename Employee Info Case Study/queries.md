@@ -49,6 +49,7 @@
 43. How many male and how many female managers do we have in the "employees" database?
 44. Extract the information about all department managers who were hired between the 1st of January 1990 and the 1st of January 1995.
 45. Select the entire information for all employees whose job title is "Assistant Engineer".
+46. Create a view that will extract the average salary of all managers registered in the database. Round this value to the nearest cent.
 
 
 
@@ -146,7 +147,16 @@
                 where t.emp_no = e.emp_no 
                 and 
                 title="Assistant Engineer"
-             )
-        ; 
+             );
+  46. create 
+	    or 
+    	replace 
+	    view v_avg_manager_salary 
+	    as
+	    select 
+		    round(avg(salary),2)
+            from salaries s
+            join dept_manager m 
+            on s.emp_no = m.emp_no;
   
 ```
