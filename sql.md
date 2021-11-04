@@ -117,6 +117,145 @@ Constraints - Specific rules or limits that defined on the table. Role of constr
       ```
   * Default Key Constraint
   * Not Null Constraint 
+
+### IfNULL 
+
+```sql 
+      IFNULL(Expression1, Expression2) 
+```
+
+It returns the first of the two indicated values if the data value found in table is not null, and returns the second value if there is a null value. 
+Prints the return value in the column of the output. 
+
+```sql
+   select dept_no, IFNULL(dept_name, 'Department name not provided') as dept_name FROM departments_dup;
+```
+### COALESCE
+
+```sql 
+      COALESCE(Expression1, Expression2, ..., ExpressionN)
+```
+
+Its more like a IF NULL function with more than 2 parameters.\
+It can also have single arguemt.\
+
+
+Both IF NULL and COALESCE do not change the database. They merely create an output where certain values appear in place of null values. 
+
+### Joins
+
+Used to combine multiple tables.
+* Inner Join
+* Left Join
+* Right Join
+* Cross Join
+
+### Union all and Union
+
+Union all is used to combine few select statements in a single output.\
+It is more like a tool that unifies multiple tables.
+
+```sql 
+      Select N columns from table 1 UNION ALL select N columns from table 2.
+```
+  * In this same columns from each table must be selected. 
+  * These columns should have same name, same order and should contain related data types.
+      
+Union and Union all has same usage but union displays only the distinct values from the tables.\
+Union uses more computational power and storage space.\
+If better results needed opt for union and if optimization needed opt for union all.
+
+### SQL Views
+
+A view is a virtual table whose contents are obtained from an existing table.
+
+```sql 
+      create or replace view v_view_name as select columns from tablename. 
+```
+### Stored Routines
+
+An SQL statement or a set of SQL statements that can be stored on the database server.\
+Whenever a user needs to run the query, they can call, reference or invoke a routine.\
+Two types of stored routines 
+   * Stored Procedures
+   * Functions
+
+Instead of ";" a delimiter is used while creating stored procedures. Following is the syntax for creating a stored procedure. 
+
+```sql
+      Delimiter $$
+      create procedure procedure_name()
+      begin
+      select * from table_name 
+      end $$ 
+      Delimiter;
+```
+It is exectured as follows 
+   
+     call databasename.stored_procedure(); 
+     or
+     call stored_procedures();
+     
+### Stored Procedure with an input paramter
+
+They can take input values and then use it in the query or queries written in the body of procedure.\
+This value is represented by the IN parameter.
+
+```sql
+      Delimiter $$
+      create procedure procedure_name(in parameter)
+      begin
+      select * from table_name
+      end $$
+      delimiter;
+```
+
+### Stored procedure with an output parameter
+
+It takes input and output parameters and provides results. 
+```sql
+   Delimiter $$
+   create procedure procedure_name (in parameter, out parameter)
+   begin
+   select * from table_name
+   end $$
+   delimiter;
+```
+
+### SQL Variables
+
+In stored procedures input given is considered as a parameter and output is the variable.\
+It is created as follows.
+
+      set @avg_salary = 0;
+Call the stored procedure with output parameter and pass the defined variable as output parameter. 
+
+
+### User defined functions
+
+In functions there are no output parameters and all are the input parameters. So, no need to include 'in' keyword. 
+
+```sql
+   
+   Delimiter $$
+   Create Function Function_Name (parameter datatype) Returns datatype
+   begin
+   Declare variable_name datatype
+   select ... => Same as select statement as of stored procedures
+   return variable_name
+   end $$
+   Delimiter;
+```
+Functions cannot be called. Instead a select statement is used to select the function. 
+
+
+
+
+   
+
+   
+
+
      
 
 
