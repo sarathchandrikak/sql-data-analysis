@@ -50,6 +50,8 @@
 44. Extract the information about all department managers who were hired between the 1st of January 1990 and the 1st of January 1995.
 45. Select the entire information for all employees whose job title is "Assistant Engineer".
 46. Create a view that will extract the average salary of all managers registered in the database. Round this value to the nearest cent.
+47. Create a procedure called "emp_info" that uses as parameters the first and the last name of an individual, and returns their employee number.
+48. Create a function called "emp_info" that takes for parameters the first and last name of an employee, and returns the salary from the newest contract of that employee.
 
 
 
@@ -158,5 +160,27 @@
             from salaries s
             join dept_manager m 
             on s.emp_no = m.emp_no;
+  47. Delimiter $$
+	create 
+	procedure emp_info(in p_first_name varchar(255), in p_last_name varchar(255), out p_emp_no integer)
+	begin
+	select e.emp_no into p_emp_no 
+	from employees e
+	where e.first_name = p_first_name
+	and 
+	e.last_name = p_last_name;
+	end $$
+	Delimiter ;  
+  48. delimiter $$
+   	create Function emp_info(p_first_name varchar(255), p_last_name varchar(255)) returns Decimal(10,2)
+   	DETERMINISTIC NO SQL READS SQL DATA
+   	begin
+   	declare v_emp_salary Decimal(10,2);
+		select s.salary INTO v_emp_salary from salaries as s left join employees e on s.emp_no = e.emp_no 
+    		where (e.first_name = p_first_name and e.last_name = p_last_name) order by from_date DESC limit 1;
+   	return v_emp_salary;
+   	end $$  
+   
+	select emp_info('Aruna', 'Journel');
   
 ```
